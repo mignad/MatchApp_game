@@ -19,12 +19,11 @@ class CardCollectionViewCell: UICollectionViewCell {
     var card:Card?
     func setCard(_ card:Card) {
         
-        //Keeps track of the card that gets passed in
         self.card = card
         
         if card.isMatched == true {
             
-            // If the cards have been matched, then make the image views invisible
+            
             backImageView.alpha = 0
             frontImageView.alpha = 0
             
@@ -32,7 +31,7 @@ class CardCollectionViewCell: UICollectionViewCell {
         }
         else {
             
-            // If the cards haven't been matched, then make the image views visible
+            
             backImageView.alpha = 1
             frontImageView.alpha = 1
         }
@@ -40,14 +39,15 @@ class CardCollectionViewCell: UICollectionViewCell {
         
         frontImageView.image = UIImage(named: card.imageName)
         
-        //Determine if the card is in a flipped up state of flipped down state
+        
         if card.isFlipped == true {
         
-            //Make sure the FrontImageView is on top
+           
             UIView.transition(from: backImageView, to: frontImageView, duration: 0, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
         }
         else {
-           //Make sure the BackImageView is on top
+            
+           
             UIView.transition(from: frontImageView, to: backImageView, duration: 0.3, options: [.transitionFlipFromLeft, .showHideTransitionViews], completion: nil)
         }
  }
@@ -68,10 +68,10 @@ class CardCollectionViewCell: UICollectionViewCell {
     }
     
     func remove() {
-        // Remove both imagesViews from being visible
+        
         backImageView.alpha = 0
     
-        // Animated it
+       
         UIView.animate(withDuration: 0.3, delay: 0.5, options: .curveEaseOut, animations: {
             
            self.frontImageView.alpha = 0
